@@ -70,3 +70,18 @@ body {
     transition: color 0.3s, background-color 0.3s;
   }
 }
+
+@layer base {
+  th {
+    @apply py-2 px-4;
+  }
+  td {
+    @apply py-2 px-4 border-b;
+  }
+  label {
+    @apply block text-sm font-medium text-gray-700;
+  }
+  input {
+    @apply mt-1 block w-full;
+  }
+}

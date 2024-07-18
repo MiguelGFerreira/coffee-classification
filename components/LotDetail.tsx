@@ -22,7 +22,7 @@ const LotDetail = ({ lot }: LotDetailProps) => {
 
   return (
     <div className="container mx-auto p-4">
-      <button onClick={() => router.push("/")} className="text-primary-green mb-4">
+      <button onClick={() => router.back()} className="text-primary-green mb-4">
         &larr; Voltar
       </button>
       <div className="bg-white shadow-md rounded-lg p-4">
@@ -40,64 +40,64 @@ const LotDetail = ({ lot }: LotDetailProps) => {
         <form>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">Defeitos</label>
-              <input type="text" className="mt-1 block w-full" disabled={!isEditing} />
+              <label>Defeitos</label>
+              <input type="text"disabled={!isEditing} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Umidade</label>
-              <input type="text" className="mt-1 block w-full" disabled={!isEditing} />
+              <label>Umidade</label>
+              <input type="text" disabled={!isEditing} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Fundo #10</label>
-              <input type="text" className="mt-1 block w-full" disabled={!isEditing} />
+              <label>Fundo #10</label>
+              <input type="text" disabled={!isEditing} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Impurezas</label>
-              <input type="text" className="mt-1 block w-full" disabled={!isEditing} />
+              <label>Impurezas</label>
+              <input type="text" disabled={!isEditing} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Broca</label>
-              <input type="text" className="mt-1 block w-full" disabled={!isEditing} />
+              <label>Broca</label>
+              <input type="text" disabled={!isEditing} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">#18AC</label>
-              <input type="text" className="mt-1 block w-full" disabled={!isEditing} />
+              <label>#18AC</label>
+              <input type="text" disabled={!isEditing} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">#17</label>
-              <input type="text" className="mt-1 block w-full" disabled={!isEditing} />
+              <label>#17</label>
+              <input type="text" disabled={!isEditing} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">#MK10</label>
-              <input type="text" className="mt-1 block w-full" disabled={!isEditing} />
+              <label>#MK10</label>
+              <input type="text" disabled={!isEditing} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">#16</label>
-              <input type="text" className="mt-1 block w-full" disabled={!isEditing} />
+              <label>#16</label>
+              <input type="text" disabled={!isEditing} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">#15</label>
-              <input type="text" className="mt-1 block w-full" disabled={!isEditing} />
+              <label>#15</label>
+              <input type="text" disabled={!isEditing} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">#14</label>
-              <input type="text" className="mt-1 block w-full" disabled={!isEditing} />
+              <label>#14</label>
+              <input type="text" disabled={!isEditing} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">#13</label>
-              <input type="text" className="mt-1 block w-full" disabled={!isEditing} />
+              <label>#13</label>
+              <input type="text" disabled={!isEditing} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">#12</label>
-              <input type="text" className="mt-1 block w-full" disabled={!isEditing} />
+              <label>#12</label>
+              <input type="text" disabled={!isEditing} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">#10/11</label>
-              <input type="text" className="mt-1 block w-full" disabled={!isEditing} />
+              <label>#10/11</label>
+              <input type="text" disabled={!isEditing} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Cata</label>
-              <input type="text" className="mt-1 block w-full" disabled={!isEditing} />
+              <label>Cata</label>
+              <input type="text" disabled={!isEditing} />
             </div>
           </div>
           {isEditing ? (

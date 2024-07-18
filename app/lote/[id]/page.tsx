@@ -7,7 +7,6 @@ const mockData: CoffeeLot[] = [
 ];
 
 const LotPage = ({ params }: { params: { id: string } }) => {
-  console.log(mockData);
   const lot = mockData.find(lot => lot.id === params.id);
 
   if (!lot) {
