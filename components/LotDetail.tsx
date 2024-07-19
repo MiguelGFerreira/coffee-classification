@@ -26,80 +26,84 @@ const LotDetail = ({ lot }: LotDetailProps) => {
         &larr; Voltar
       </button>
       <div className="bg-white grid grid-cols-2 shadow-md rounded-lg gap-4 p-4">
-        <div>
+        <div className="grid justify-between">
           <h2 className="text-2xl font-bold text-coffee-brown mb-4">Detalhes do Lote</h2>
-          <div className="justify-between">
             <p><strong>Data:</strong> {lot.date}</p>
             <p><strong>Compra:</strong> {lot.purchase}</p>
             <p><strong>Grupo:</strong> {lot.group}</p>
             <p><strong>Lote:</strong> {lot.lot}</p>
             <p><strong>Sacas:</strong> {lot.bags}</p>
+            <p><strong>Kg:</strong> {lot.bags * 60}</p>
+            <p><strong>Kg recebimento:</strong> {lot.bags * 59.5}</p>
+            <p><strong>DI(Kg):</strong> {(lot.bags * 60) - (lot.bags * 59.5)}</p>
             <p><strong>Corretor:</strong> {lot.broker}</p>
             <p><strong>Vendedor:</strong> {lot.seller}</p>
+            <p><strong>Município:</strong> Viana</p>
+            <p><strong>Classificação:</strong> Resultado</p>
+            <p><strong>Pagamento:</strong> Sim/Não/A disposição</p>
             <p><strong>Status:</strong> {lot.status}</p>
-          </div>
         </div>
         <form>
           <div>
             <div>
               <label>Defeitos</label>
-              <input type="text" disabled={!isEditing} />
+              <input type="number" disabled={!isEditing} />
             </div>
             <div>
               <label>Umidade</label>
-              <input type="text" disabled={!isEditing} />
+              <input type="number" disabled={!isEditing} />
             </div>
             <div>
               <label>Fundo #10</label>
-              <input type="text" disabled={!isEditing} />
+              <input type="number" disabled={!isEditing} />
             </div>
             <div>
               <label>Impurezas</label>
-              <input type="text" disabled={!isEditing} />
+              <input type="number" disabled={!isEditing} />
             </div>
             <div>
               <label>Broca</label>
-              <input type="text" disabled={!isEditing} />
+              <input type="number" disabled={!isEditing} />
             </div>
             <div>
               <label>#18AC</label>
-              <input type="text" disabled={!isEditing} />
+              <input type="number" disabled={!isEditing} />
             </div>
             <div>
               <label>#17</label>
-              <input type="text" disabled={!isEditing} />
+              <input type="number" disabled={!isEditing} />
             </div>
             <div>
               <label>#MK10</label>
-              <input type="text" disabled={!isEditing} />
+              <input type="number" disabled={!isEditing} />
             </div>
             <div>
               <label>#16</label>
-              <input type="text" disabled={!isEditing} />
+              <input type="number" disabled={!isEditing} />
             </div>
             <div>
               <label>#15</label>
-              <input type="text" disabled={!isEditing} />
+              <input type="number" disabled={!isEditing} />
             </div>
             <div>
               <label>#14</label>
-              <input type="text" disabled={!isEditing} />
+              <input type="number" disabled={!isEditing} />
             </div>
             <div>
               <label>#13</label>
-              <input type="text" disabled={!isEditing} />
+              <input type="number" disabled={!isEditing} />
             </div>
             <div>
               <label>#12</label>
-              <input type="text" disabled={!isEditing} />
+              <input type="number" disabled={!isEditing} />
             </div>
             <div>
               <label>#10/11</label>
-              <input type="text" disabled={!isEditing} />
+              <input type="number" disabled={!isEditing} />
             </div>
             <div>
               <label>Cata</label>
-              <input type="text" disabled={!isEditing} />
+              <input type="number" disabled={!isEditing} />
             </div>
           </div>
         </form>
