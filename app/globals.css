@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 245, 245, 245;
-  --background-end-rgb: 255, 255, 255;
-  --primary-green: 21, 127, 31; /* #157F1F */
-  --secondary-green: 76, 185, 99; /* #4CB963 */
-  --coffee-brown: 60, 42, 33;
+  --foreground-rgb: #000000;
+  --background-start-rgb: #F5F5F5;
+  --background-end-rgb: #FFFFFF;
+  --primary-green: #157F1F;
+  --secondary-green: #4CB963;
+  --coffee-brown: #3C2A21;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,13 +20,13 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: var(--foreground-rgb);
   background: linear-gradient(
       to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
+      var(--background-end-rgb)
     )
-    rgb(var(--background-start-rgb));
+    var(--background-start-rgb);
 }
 
 @layer utilities {
@@ -35,35 +35,35 @@ body {
   }
 
   .bg-primary-green {
-    background-color: rgb(var(--primary-green));
+    background-color: var(--primary-green);
   }
 
   .text-primary-green {
-    color: rgb(var(--primary-green));
+    color: var(--primary-green);
   }
 
   .bg-secondary-green {
-    background-color: rgb(var(--secondary-green));
+    background-color: var(--secondary-green);
   }
 
   .text-secondary-green {
-    color: rgb(var(--secondary-green));
+    color: var(--secondary-green);
   }
 
   .bg-coffee-brown {
-    background-color: rgb(var(--coffee-brown));
+    background-color: var(--coffee-brown);
   }
 
   .text-coffee-brown {
-    color: rgb(var(--coffee-brown));
+    color: var(--coffee-brown);
   }
 
   .hover-bg-secondary-green:hover {
-    background-color: rgb(var(--secondary-green));
+    background-color: var(--secondary-green);
   }
 
   .hover-text-secondary-green:hover {
-    color: rgb(var(--secondary-green));
+    color: var(--secondary-green);
   }
 
   .transition-colors {

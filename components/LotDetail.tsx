@@ -25,23 +25,25 @@ const LotDetail = ({ lot }: LotDetailProps) => {
       <button onClick={() => router.back()} className="text-primary-green mb-4">
         &larr; Voltar
       </button>
-      <div className="bg-white shadow-md rounded-lg p-4">
-        <h2 className="text-2xl font-bold text-coffee-brown mb-4">Detalhes do Lote</h2>
-        <div className="mb-4">
-          <p><strong>Data:</strong> {lot.date}</p>
-          <p><strong>Compra:</strong> {lot.purchase}</p>
-          <p><strong>Grupo:</strong> {lot.group}</p>
-          <p><strong>Lote:</strong> {lot.lot}</p>
-          <p><strong>Sacas:</strong> {lot.bags}</p>
-          <p><strong>Corretor:</strong> {lot.broker}</p>
-          <p><strong>Vendedor:</strong> {lot.seller}</p>
-          <p><strong>Status:</strong> {lot.status}</p>
+      <div className="bg-white grid grid-cols-2 shadow-md rounded-lg gap-4 p-4">
+        <div>
+          <h2 className="text-2xl font-bold text-coffee-brown mb-4">Detalhes do Lote</h2>
+          <div className="justify-between">
+            <p><strong>Data:</strong> {lot.date}</p>
+            <p><strong>Compra:</strong> {lot.purchase}</p>
+            <p><strong>Grupo:</strong> {lot.group}</p>
+            <p><strong>Lote:</strong> {lot.lot}</p>
+            <p><strong>Sacas:</strong> {lot.bags}</p>
+            <p><strong>Corretor:</strong> {lot.broker}</p>
+            <p><strong>Vendedor:</strong> {lot.seller}</p>
+            <p><strong>Status:</strong> {lot.status}</p>
+          </div>
         </div>
         <form>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
             <div>
               <label>Defeitos</label>
-              <input type="text"disabled={!isEditing} />
+              <input type="text" disabled={!isEditing} />
             </div>
             <div>
               <label>Umidade</label>
@@ -100,17 +102,17 @@ const LotDetail = ({ lot }: LotDetailProps) => {
               <input type="text" disabled={!isEditing} />
             </div>
           </div>
-          {isEditing ? (
-            <button type="button" onClick={handleSaveClick} className="mt-4 bg-primary-green text-white px-4 py-2 rounded">
-              Salvar
-            </button>
-          ) : (
-            <button type="button" onClick={handleEditClick} className="mt-4 bg-secondary-green text-white px-4 py-2 rounded">
-              Editar
-            </button>
-          )}
         </form>
       </div>
+      {isEditing ? (
+        <button type="button" onClick={handleSaveClick} className="mt-4 bg-primary-green text-white px-4 py-2 rounded">
+          Salvar
+        </button>
+      ) : (
+        <button type="button" onClick={handleEditClick} className="mt-4 bg-secondary-green text-white px-4 py-2 rounded">
+          Editar
+        </button>
+      )}
     </div>
   );
 };
