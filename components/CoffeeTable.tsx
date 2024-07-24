@@ -4,6 +4,7 @@ import { getLotes } from "@/api";
 import { CoffeeLot } from "@/types";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import LoadingSpinner from "./LoadingSpinner";
 
 const CoffeeTable = () => {
   const router = useRouter();
@@ -30,7 +31,7 @@ const CoffeeTable = () => {
   }, []);
 
   if (loading) {
-    return <p>Carregando...</p>;
+    return <LoadingSpinner />;
   }
 
   return (
@@ -61,7 +62,7 @@ const CoffeeTable = () => {
               <td>{lot.qtd_sacas}</td>
               <td>{lot.corretor}</td>
               <td>{lot.nome}</td>
-              <td>{lot.cidade}</td>
+              <td>{lot.status}</td>
             </tr>
           ))}
         </tbody>

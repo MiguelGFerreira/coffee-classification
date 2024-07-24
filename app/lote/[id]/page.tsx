@@ -4,6 +4,7 @@ import { CoffeeLot } from "@/types";
 import LotDetail from "@/components/LotDetail";
 import { useEffect, useState } from "react";
 import { getLoteById } from "@/api";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const LotPage = ({ params }: { params: { id: string } }) => {
   const [coffeeLot, setCoffeeLot] = useState<CoffeeLot>();
@@ -25,7 +26,7 @@ const LotPage = ({ params }: { params: { id: string } }) => {
   }, []);
 
   if (loading) {
-    return <p>Carregando...</p>;
+    return <LoadingSpinner />;
   }
 
   if (!coffeeLot) {
