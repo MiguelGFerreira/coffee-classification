@@ -1,19 +1,36 @@
 "use client"
 
+import { getLotes } from "@/api";
 import { CoffeeLot } from "@/types";
 import { useRouter } from "next/navigation";
-
-const coffeeLots: CoffeeLot[] = [
-  { id: '1', date: '01/07/24', purchase: 'VI240962', group: 'CON', lot: 'VI45801-00', bags: 500, broker: 'Roberto Rosa', seller: 'Alberta Coffee', status: 'Não classificado' },
-  { id: '2', date: '02/07/24', purchase: 'VI240963', group: 'CON', lot: 'VI45802-00', bags: 300, broker: 'Carlos Silva', seller: 'Best Beans', status: 'Classificado' },
-];
-
+import { useEffect, useState } from "react";
 
 const CoffeeTable = () => {
   const router = useRouter();
+  const [coffeeLots, setCoffeeLots] = useState<CoffeeLot[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const handleRowClick = (id: string) => {
+  const handleRowClick = (id: number) => {
     router.push(`/lote/${id}`)
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getLotes();
+        setCoffeeLots(data);
+      } catch (error) {
+        console.error("Erro ao buscar lotes de café:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <p>Carregando...</p>;
   }
 
   return (
@@ -35,16 +52,16 @@ const CoffeeTable = () => {
           {coffeeLots.map((lot, index) => (
             <tr
               key={index}
-              onClick={() => handleRowClick(lot.id)}
+              onClick={() => handleRowClick(lot.idlote)}
               className="text-center hover:bg-secondary-green transition-colors cursor-pointer">
-              <td>{lot.date}</td>
-              <td>{lot.purchase}</td>
-              <td>{lot.group}</td>
-              <td>{lot.lot}</td>
-              <td>{lot.bags}</td>
-              <td>{lot.broker}</td>
-              <td>{lot.seller}</td>
-              <td>{lot.status}</td>
+              <td>{lot.data_entrada}</td>
+              <td>{lot.referencia}</td>
+              <td>{lot.descricao}</td>
+              <td>{lot.numLote}</td>
+              <td>{lot.qtd_sacas}</td>
+              <td>{lot.corretor}</td>
+              <td>{lot.nome}</td>
+              <td>{lot.cidade}</td>
             </tr>
           ))}
         </tbody>

@@ -20,6 +20,8 @@ const LotDetail = ({ lot }: LotDetailProps) => {
     setIsEditing(false);
   };
 
+  //console.log(lot);
+
   return (
     <div className="container mx-auto p-4">
       <button onClick={() => router.back()} className="text-primary-green mb-4">
@@ -28,17 +30,17 @@ const LotDetail = ({ lot }: LotDetailProps) => {
       <div className="bg-white grid grid-cols-2 shadow-md rounded-lg gap-4 p-4">
         <div className="grid justify-between">
           <h2 className="text-2xl font-bold text-coffee-brown mb-4">Detalhes do Lote</h2>
-            <p><strong>Data:</strong> {lot.date}</p>
-            <p><strong>Compra:</strong> {lot.purchase}</p>
-            <p><strong>Grupo:</strong> {lot.group}</p>
-            <p><strong>Lote:</strong> {lot.lot}</p>
-            <p><strong>Sacas:</strong> {lot.bags}</p>
-            <p><strong>Kg:</strong> {lot.bags * 60}</p>
-            <p><strong>Kg recebimento:</strong> {lot.bags * 59.5}</p>
-            <p><strong>DI(Kg):</strong> {(lot.bags * 60) - (lot.bags * 59.5)}</p>
-            <p><strong>Corretor:</strong> {lot.broker}</p>
-            <p><strong>Vendedor:</strong> {lot.seller}</p>
-            <p><strong>Município:</strong> Viana</p>
+            <p><strong>Data:</strong> {lot.data_entrada}</p>
+            <p><strong>Compra:</strong> {lot.referencia}</p>
+            <p><strong>Grupo:</strong> {lot.descricao}</p>
+            <p><strong>Lote:</strong> {lot.numLote}</p>
+            <p><strong>Sacas:</strong> {lot.qtd_sacas}</p>
+            <p><strong>Kg:</strong> {lot.qtd_sacas * 60}</p>
+            <p><strong>Kg recebimento:</strong> {lot.pesoliquido}</p>
+            <p><strong>DI(Kg):</strong> {(lot.qtd_sacas * 60) - lot.pesoliquido}</p>
+            <p><strong>Corretor:</strong> {lot.corretor}</p>
+            <p><strong>Vendedor:</strong> {lot.nome}</p>
+            <p><strong>Município:</strong> {lot.cidade}</p>
             <p><strong>Classificação:</strong> Resultado</p>
             <p><strong>Pagamento:</strong> Sim/Não/A disposição</p>
             <p><strong>Status:</strong> {lot.status}</p>
