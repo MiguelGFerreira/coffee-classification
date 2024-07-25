@@ -84,4 +84,12 @@ body {
   input {
     @apply mt-1 block w-full border;
   }
+
+  .btn {
+    @apply font-bold py-2 px-4 rounded-lg ring-4 active:translate-y-[2px] active:translate-x-[1px] bg-green-400 text-stone-700 ring-green-500 ring-inset hover:bg-green-300 hover:ring-green-400 active:bg-green-200 active:ring-green-300;
+  }
+
+  .btnPerigo {
+    @apply font-bold py-2 px-4 rounded-lg ring-4 active:translate-y-[2px] active:translate-x-[1px] bg-red-600 text-white ring-red-700 ring-inset hover:bg-red-500 hover:ring-red-600 active:bg-red-400 active:ring-red-400;
+  }
 }

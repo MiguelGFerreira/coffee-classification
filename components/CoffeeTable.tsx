@@ -10,10 +10,29 @@ const CoffeeTable = () => {
   const router = useRouter();
   const [coffeeLots, setCoffeeLots] = useState<CoffeeLot[]>([]);
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState({ lotNumber: "", isClassified: "" });
 
   const handleRowClick = (id: number) => {
     router.push(`/lote/${id}`)
   }
+
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFilter({ ...filter, [name]: value });
+  };
+
+  const handleSearch = () => {
+    setCoffeeLots(
+      coffeeLots.filter((lot) => {
+        const matchesLotNumber = lot.numLote.includes(filter.lotNumber);
+        const matchesClassifiedStatus = filter.isClassified
+          ? (filter.isClassified === "classificado" && lot.status === "Classificado") ||
+          (filter.isClassified === "naoClassificado" && lot.status !== "Classificado")
+          : true;
+        return matchesLotNumber && matchesClassifiedStatus;
+      })
+    );
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,6 +55,29 @@ const CoffeeTable = () => {
 
   return (
     <div className="overflow-x-auto">
+      <div className="mb-4">
+        <input
+          type="text"
+          name="lotNumber"
+          value={filter.lotNumber}
+          onChange={handleFilterChange}
+          placeholder="Buscar pelo número do lote"
+          className="border rounded-md p-2 mr-2"
+        />
+        <select
+          name="isClassified"
+          value={filter.isClassified}
+          onChange={handleFilterChange}
+          className="border rounded-md p-2 mr-2"
+        >
+          <option value="">Todos</option>
+          <option value="classificado">Classificado</option>
+          <option value="naoClassificado">Não Classificado</option>
+        </select>
+        <button onClick={handleSearch} className="bg-primary-green text-white px-4 py-2 rounded-md">
+          Buscar
+        </button>
+      </div>
       <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
         <thead className="bg-secondary-green text-white text-center">
           <tr>

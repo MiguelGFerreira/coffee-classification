@@ -1,7 +1,11 @@
+"use server"
+
 import { zCoffeeLotSchema } from "@/types";
 
+const ip = "10.10.200.129";
+
 export async function getLotes() {
-	const res = await fetch(`http://localhost:8000/express-coffee/lotes`)
+	const res = await fetch(`http://${ip}:8000/express-coffee/lotes`)
 	if (!res.ok) {
 		throw new Error('Falha ao buscar dados');
 	}
@@ -9,7 +13,7 @@ export async function getLotes() {
 }
 
 export async function getLoteById(idlote: string) {
-	const res = await fetch(`http://localhost:8000/express-coffee/lotes/${idlote}`)
+	const res = await fetch(`http://${ip}:8000/express-coffee/lotes/${idlote}`)
 	if (!res.ok) {
 		throw new Error('Falha ao buscar dados');
 	}
@@ -28,20 +32,20 @@ export const postLote = async (data: zCoffeeLotSchema, idlote: number, numLote: 
 		"fundo10": data.fundo10,
 		"impurezas": data.impurezas,
 		"broca": data.broca,
-		"p18": data.ac18,
-		"p17": data.peneira17,
-		"mk10": data.mk10,
-		"p16": data.p16,
-		"p15": data.p15,
-		"p14": data.p14,
-		"p13": data.p13,
-		"p12": data.p12,
-		"p10_11": data.p10_11,
+		"ac18": data.ac18,
+		"peneira17": data.peneira17,
+		"moka10": data.moka10,
+		"peneira16": data.peneira16,
+		"peneira15": data.peneira15,
+		"peneira14": data.peneira14,
+		"peneira13": data.peneira13,
+		"peneira12": data.peneira12,
+		"peneira10_11": data.peneira10_11,
 		"cata": data.cata,
 	});
 
 	fetch(
-		`http://localhost:8000/express-coffee/lotes/${idlote}`,
+		`http://${ip}:8000/express-coffee/lotes/${idlote}`,
 		{
 			method: 'POST',
 			headers: myHeaders,

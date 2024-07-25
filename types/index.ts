@@ -13,25 +13,41 @@ export interface CoffeeLot {
   corretor: string;
   nome: string;
   cidade: string;
-  status?: string;
+  status: string;
+  clas_id?: number;
+  clas_defeitoS?: number;
+  clas_umidade?: number;
+  clas_fundo10?: number;
+  clas_impurezas?: number;
+  clas_broca?: number;
+  clas_ac18?: number;
+  clas_peneira17?: number;
+  clas_moka10?: number;
+  clas_peneira16?: number;
+  clas_peneira15?: number;
+  clas_peneira14?: number;
+  clas_peneira13?: number;
+  clas_peneira12?: number;
+  clas_peneira10_11?: number;
+  clas_cata?: number;
 }
 
 export const coffeeLotSchema = z.object({
-  defeitos: z.string().min(1, "Defeitos são obrigatórios"),
-  umidade: z.string().min(1, "Umidade é obrigatória"),
-  fundo10: z.string().min(1, "Fundo #10 é obrigatório"),
-  impurezas: z.string().min(1, "Impurezas são obrigatórias"),
-  broca: z.string().min(1, "Broca é obrigatória"),
-  ac18: z.string().min(1, "#18AC é obrigatório"),
-  mk10: z.string().min(1, "#MK10 é obrigatório"),
-  peneira17: z.string().min(1, "#17 é obrigatório"),
-  p16: z.string().min(1, "#16 é obrigatório"),
-  p15: z.string().min(1, "#15 é obrigatório"),
-  p14: z.string().min(1, "#14 é obrigatório"),
-  p13: z.string().min(1, "#13 é obrigatório"),
-  p12: z.string().min(1, "#12 é obrigatório"),
-  p10_11: z.string().min(1, "#10/11 é obrigatório"),
-  cata: z.string().min(1, "Cata é obrigatória"),
+  defeitos: z.coerce.number().min(0, "Defeitos são obrigatórios"),
+  umidade: z.coerce.number().min(0, "Umidade é obrigatória"),
+  fundo10: z.coerce.number().min(0, "Fundo #10 é obrigatório"),
+  impurezas: z.coerce.number().min(0, "Impurezas são obrigatórias"),
+  broca: z.coerce.number().min(0, "Broca é obrigatória"),
+  ac18: z.coerce.number().min(0, "#18AC é obrigatório"),
+  moka10: z.coerce.number().min(0, "#MK10 é obrigatório"),
+  peneira17: z.coerce.number().min(0, "#17 é obrigatório"),
+  peneira16: z.coerce.number().min(0, "#16 é obrigatório"),
+  peneira15: z.coerce.number().min(0, "#15 é obrigatório"),
+  peneira14: z.coerce.number().min(0, "#14 é obrigatório"),
+  peneira13: z.coerce.number().min(0, "#13 é obrigatório"),
+  peneira12: z.coerce.number().min(0, "#12 é obrigatório"),
+  peneira10_11: z.coerce.number().min(0, "#10/11 é obrigatório"),
+  cata: z.coerce.number().min(0, "Cata é obrigatória"),
 });
 
 // Export types from schema

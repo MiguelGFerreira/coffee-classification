@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { patchLote, postLote } from "@/api";
+import { IM_Fell_Double_Pica } from "next/font/google";
 
 interface LotDetailProps {
   lot: CoffeeLot;
@@ -15,12 +16,31 @@ const LotDetail = ({ lot }: LotDetailProps) => {
   const router = useRouter();
   const [isEditable, setIsEditable] = useState(lot.status === "Classificado" ? false : true);
 
+  const defaultValues = {
+    defeitos: lot.clas_defeitoS || 0,
+    umidade: lot.clas_umidade || 0,
+    fundo10: lot.clas_fundo10 || 0,
+    impurezas: lot.clas_impurezas || 0,
+    broca: lot.clas_broca || 0,
+    ac18: lot.clas_ac18 || 0,
+    peneira17: lot.clas_peneira17 || 0,
+    moka10: lot.clas_moka10 || 0,
+    peneira16: lot.clas_peneira16 || 0,
+    peneira15: lot.clas_peneira15 || 0,
+    peneira14: lot.clas_peneira14 || 0,
+    peneira13: lot.clas_peneira13 || 0,
+    peneira12: lot.clas_peneira12 || 0,
+    peneira10_11: lot.clas_peneira10_11 || 0,
+    cata: lot.clas_cata || 0,
+  };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<zCoffeeLotSchema>({
     resolver: zodResolver(coffeeLotSchema),
+    defaultValues,
   });
 
   const handleEditClick = () => {
@@ -31,10 +51,12 @@ const LotDetail = ({ lot }: LotDetailProps) => {
 
     if (lot.status === "Classificado") {
       await patchLote(data, lot.idlote, lot.numLote);
+      location.reload();
       return;
     }
 
     await postLote(data, lot.idlote, lot.numLote);
+    location.reload();
   };
 
   return (
@@ -61,13 +83,13 @@ const LotDetail = ({ lot }: LotDetailProps) => {
           <p><strong>Status:</strong> {lot.status}</p>
         </div>
         <form id="classification" onSubmit={handleSubmit(onSubmit)}>
-          {["defeitos", "umidade", "fundo10", "impurezas", "broca", "ac18", "peneira17", "mk10", "p16", "p15", "p14", "p13", "p12", "p10_11", "cata"].map((field) => (
+          {["defeitos", "umidade", "fundo10", "impurezas", "broca", "ac18", "peneira17", "moka10", "peneira16", "peneira15", "peneira14", "peneira13", "peneira12", "peneira10_11", "cata"].map((field) => (
             <div key={field} className="mb-4">
               <label htmlFor={field} className="block text-sm font-medium text-gray-700">
                 {field.charAt(0).toUpperCase() + field.slice(1)}
               </label>
               <input
-                type="text"
+                type="numeric"
                 id={field}
                 {...register(field as keyof zCoffeeLotSchema)}
                 className={`mt-1 block w-full border ${errors[field as keyof zCoffeeLotSchema] ? "border-red-500" : "border-gray-300"
