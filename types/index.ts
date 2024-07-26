@@ -30,6 +30,8 @@ export interface CoffeeLot {
   clas_peneira12?: number;
   clas_peneira10_11?: number;
   clas_cata?: number;
+  clas_resultado?: string;
+  clas_pagamento?: string;
 }
 
 export const coffeeLotSchema = z.object({
@@ -48,6 +50,8 @@ export const coffeeLotSchema = z.object({
   peneira12: z.coerce.number().min(0, "#12 é obrigatório"),
   peneira10_11: z.coerce.number().min(0, "#10/11 é obrigatório"),
   cata: z.coerce.number().min(0, "Cata é obrigatória"),
+  resultado: z.string(),
+  pagamento: z.string(),
 });
 
 // Export types from schema

@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { patchLote, postLote } from "@/api";
-import { IM_Fell_Double_Pica } from "next/font/google";
 
 interface LotDetailProps {
   lot: CoffeeLot;
@@ -32,7 +31,9 @@ const LotDetail = ({ lot }: LotDetailProps) => {
     peneira12: lot.clas_peneira12 || 0,
     peneira10_11: lot.clas_peneira10_11 || 0,
     cata: lot.clas_cata || 0,
-  };
+    resultado: lot.clas_resultado || "",
+    pagamento: lot.clas_pagamento || "",
+  };1
 
   const {
     register,
@@ -44,13 +45,15 @@ const LotDetail = ({ lot }: LotDetailProps) => {
   });
 
   const handleEditClick = () => {
+    console.log("edit");
     setIsEditable(true);
   };
 
   const onSubmit = async (data: zCoffeeLotSchema) => {
+    console.log("submit");
 
     if (lot.status === "Classificado") {
-      await patchLote(data, lot.idlote, lot.numLote);
+      await patchLote(data, lot.clas_id);
       location.reload();
       return;
     }
@@ -78,8 +81,21 @@ const LotDetail = ({ lot }: LotDetailProps) => {
           <p><strong>Corretor:</strong> {lot.corretor}</p>
           <p><strong>Vendedor:</strong> {lot.nome}</p>
           <p><strong>Município:</strong> {lot.cidade}</p>
-          <p><strong>Classificação:</strong> Resultado</p>
-          <p><strong>Pagamento:</strong> Sim/Não/A disposição</p>
+          <p><strong>Classificação:</strong> <input id="resultado" disabled={!isEditable} value={lot.clas_resultado} form="classification" type="text" /></p>
+          <p><strong>Pagamento:</strong>
+            <select
+              disabled={!isEditable}
+              id="pagamento"
+              name="pagamento"
+              form="classification"
+              value={lot.clas_pagamento}
+              className="border rounded-md p-2 mr-2"
+            >
+              <option value=""></option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+              <option value="A disposição">A disposição</option>
+            </select></p>
           <p><strong>Status:</strong> {lot.status}</p>
         </div>
         <form id="classification" onSubmit={handleSubmit(onSubmit)}>
@@ -110,8 +126,20 @@ const LotDetail = ({ lot }: LotDetailProps) => {
             >
               Salvar
             </button>
+
           )}
         </form>
+        {!isEditable && (
+          <button
+            type="button"
+            onClick={handleEditClick}
+            className="bg-secondary-green text-white px-4 py-2 rounded-md"
+          >
+            Editar
+          </button>
+
+        )}
+
       </div>
     </div>
   );

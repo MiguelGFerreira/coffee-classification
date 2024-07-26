@@ -27,6 +27,7 @@ body {
       var(--background-end-rgb)
     )
     var(--background-start-rgb);
+  font-size: large;
 }
 
 @layer utilities {

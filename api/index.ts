@@ -42,6 +42,8 @@ export const postLote = async (data: zCoffeeLotSchema, idlote: number, numLote: 
 		"peneira12": data.peneira12,
 		"peneira10_11": data.peneira10_11,
 		"cata": data.cata,
+		"resultado": data.resultado,
+		"pagamento": data.pagamento,
 	});
 
 	fetch(
@@ -57,9 +59,42 @@ export const postLote = async (data: zCoffeeLotSchema, idlote: number, numLote: 
 		.catch(error => console.log('error', error));
 }
 
-export async function patchLote(data: zCoffeeLotSchema, idlote: number, numLote: string) {
-	console.log("patch");
-	console.log(data);
-	console.log(idlote);
-	console.log(numLote);
+export async function patchLote(data: zCoffeeLotSchema, clas_id: number | undefined) {
+	const url = `http://${ip}:8000/express-coffee/lotes/${clas_id}`;
+	const myHeaders = new Headers();
+
+	myHeaders.append('Content-Type', 'application/json');
+
+
+	const raw = JSON.stringify({
+		"clas_id": clas_id,
+		"defeitos": data.defeitos,
+		"umidade": data.umidade,
+		"fundo10": data.fundo10,
+		"impurezas": data.impurezas,
+		"broca": data.broca,
+		"ac18": data.ac18,
+		"peneira17": data.peneira17,
+		"moka10": data.moka10,
+		"peneira16": data.peneira16,
+		"peneira15": data.peneira15,
+		"peneira14": data.peneira14,
+		"peneira13": data.peneira13,
+		"peneira12": data.peneira12,
+		"peneira10_11": data.peneira10_11,
+		"cata": data.cata,
+		"resultado": data.resultado,
+		"pagamento": data.pagamento,
+	});
+
+	try {
+		await fetch(url, {
+			method: 'PATCH',
+			headers: myHeaders,
+			body: raw,
+			redirect: 'follow',
+		});
+	} catch (error) {
+		console.error('Falha ao atualizar classificação: ', error);
+	}
 }
