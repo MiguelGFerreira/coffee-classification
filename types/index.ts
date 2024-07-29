@@ -50,8 +50,8 @@ export const coffeeLotSchema = z.object({
   peneira12: z.coerce.number().min(0, "#12 é obrigatório"),
   peneira10_11: z.coerce.number().min(0, "#10/11 é obrigatório"),
   cata: z.coerce.number().min(0, "Cata é obrigatória"),
-  resultado: z.string(),
-  pagamento: z.string(),
+  clas_resultado: z.string(),
+  clas_pagamento: z.string(),
 });
 
 // Export types from schema

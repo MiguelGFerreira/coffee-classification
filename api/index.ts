@@ -42,9 +42,11 @@ export const postLote = async (data: zCoffeeLotSchema, idlote: number, numLote: 
 		"peneira12": data.peneira12,
 		"peneira10_11": data.peneira10_11,
 		"cata": data.cata,
-		"resultado": data.resultado,
-		"pagamento": data.pagamento,
+		"resultado": data.clas_resultado,
+		"pagamento": data.clas_pagamento,
 	});
+
+	console.log("post: ", raw);
 
 	fetch(
 		`http://${ip}:8000/express-coffee/lotes/${idlote}`,
@@ -83,9 +85,11 @@ export async function patchLote(data: zCoffeeLotSchema, clas_id: number | undefi
 		"peneira12": data.peneira12,
 		"peneira10_11": data.peneira10_11,
 		"cata": data.cata,
-		"resultado": data.resultado,
-		"pagamento": data.pagamento,
+		"resultado": data.clas_resultado,
+		"pagamento": data.clas_pagamento,
 	});
+
+	console.log("patch: ", raw);
 
 	try {
 		await fetch(url, {
