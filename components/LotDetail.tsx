@@ -41,7 +41,6 @@ const LotDetail = ({ lot }: LotDetailProps) => {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm<zCoffeeLotSchema>({
     resolver: zodResolver(coffeeLotSchema),
@@ -52,6 +51,10 @@ const LotDetail = ({ lot }: LotDetailProps) => {
     console.log("edit");
     setIsEditable(true);
   };
+
+  const formatNumber = (input: HTMLInputElement) => {
+    input.value = input.value.replace(',', '.');
+  }
 
   const onSubmit = async (data: zCoffeeLotSchema) => {
     console.log("submit");
@@ -151,6 +154,7 @@ const LotDetail = ({ lot }: LotDetailProps) => {
                   className={`mt-1 block w-full border ${errors[field as keyof zCoffeeLotSchema] ? "border-red-500" : "border-gray-300"
                     } rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
                   disabled={!isEditable}
+                  onBlur={(e) => formatNumber(e.target)}
                 />
                 {errors[field as keyof zCoffeeLotSchema] && (
                   <p className="mt-2 text-sm text-red-600">
