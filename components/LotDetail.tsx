@@ -144,14 +144,14 @@ const LotDetail = ({ lot }: LotDetailProps) => {
               "cata",
             ].map((field) => (
               <div key={field} className="flex gap-4 mb-4">
-                <label htmlFor={field} className="block w-1/5 text-gray-700">
+                <label htmlFor={field}>
                   {field.charAt(0).toUpperCase() + field.slice(1)}
                 </label>
                 <input
                   type="text"
                   id={field}
                   {...register(field as keyof zCoffeeLotSchema)}
-                  className={`mt-1 block w-full border ${errors[field as keyof zCoffeeLotSchema] ? "border-red-500" : "border-gray-300"
+                  className={`${errors[field as keyof zCoffeeLotSchema] ? "border-red-500" : "border-gray-300"
                     } rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm`}
                   disabled={!isEditable}
                   onBlur={(e) => formatNumber(e.target)}
