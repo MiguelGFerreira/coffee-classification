@@ -2,7 +2,7 @@
 
 import { zCoffeeLotSchema } from "@/types";
 
-const ip = "10.10.200.129";
+const ip = "10.10.200.142";
 
 export async function getLotes() {
 	const res = await fetch(`http://${ip}:8000/express-coffee/lotes`)
