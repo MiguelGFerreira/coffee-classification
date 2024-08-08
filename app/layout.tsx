@@ -17,13 +17,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  // const userLogon = await getUserLogon();
-  // user.userLogon = userLogon.userlogon;
-  // user.displayName = userLogon.displayName;
-  // user.usuario = userLogon.usuario;
-  // Object.freeze(user);
-  // const UserContext = createContext(String);
-
   return (
     <html lang="pt-BR">
       <body className={inter.className}>

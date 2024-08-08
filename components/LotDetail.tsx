@@ -14,12 +14,14 @@ interface LotDetailProps {
 
 const LotDetail = ({ lot }: LotDetailProps) => {
   const router = useRouter();
-  const [isEditable, setIsEditable] = useState(lot.status !== "Classificado");
+  const user = useContext(UserContext);
+  const acesso = user?.acesso[0].ACESSO;
+
+  const [isEditable, setIsEditable] = useState(lot.status !== "Classificado" && acesso !== "A");
 
   const [resultado, setResultado] = useState(lot.clas_resultado || "");
   const [pagamento, setPagamento] = useState(lot.clas_pagamento || "");
 
-  const user = useContext(UserContext);
 
   const defaultValues = {
     defeitos: lot.clas_defeitoS || 0,
@@ -68,23 +70,19 @@ const LotDetail = ({ lot }: LotDetailProps) => {
       clas_pagamento: pagamento,
     }
 
-    console.log(user);
-
     try {
       if (lot.status === "Classificado") {
         console.log("patch");
-        await patchLote(updatedData, lot.clas_id, user!.displayName);
+        await patchLote(updatedData, lot.clas_id, user!.username);
       } else {
         console.log("post");
-        await postLote(updatedData, lot.idlote, lot.numLote, user!.displayName);
+        await postLote(updatedData, lot.idlote, lot.numLote, user!.username);
       }
       location.reload();
     } catch (error) {
-      console.error("Error updating lot:", error);
+      console.error("Error updating lot: ", error);
     }
   };
-
-  console.log(user);
 
   return (
     <div className="container mx-auto p-4">

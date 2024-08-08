@@ -59,8 +59,13 @@ export const coffeeLotSchema = z.object({
 // Export types from schema
 export type zCoffeeLotSchema = z.infer<typeof coffeeLotSchema>;
 
+interface Acesso {
+  ACESSO: string,
+}
+
 export interface User {
   userlogon: Object,
-	displayName: string,
-	usuario: string
+	usuario: string,
+  username: string,
+  acesso: Acesso[],
 }
