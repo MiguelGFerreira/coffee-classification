@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
-import { getUserLogon } from "@/lib/getUserLogon";
+import UserProvider from "@/context/UserContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,17 +16,23 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
-  const userLogon = await getUserLogon();
-  console.log(userLogon);
-  
+
+  // const userLogon = await getUserLogon();
+  // user.userLogon = userLogon.userlogon;
+  // user.displayName = userLogon.displayName;
+  // user.usuario = userLogon.usuario;
+  // Object.freeze(user);
+  // const UserContext = createContext(String);
+
   return (
     <html lang="pt-BR">
       <body className={inter.className}>
-        <main className="min-h-screen bg-gray-100">
-          <Nav />
-          {children}
-        </main>
+        <UserProvider>
+          <main className="min-h-screen bg-gray-100">
+            <Nav />
+            {children}
+          </main>
+        </UserProvider>
       </body>
     </html>
   );

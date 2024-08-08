@@ -32,6 +32,8 @@ export interface CoffeeLot {
   clas_cata?: number;
   clas_resultado?: string;
   clas_pagamento?: string;
+  clas_usuario?: string;
+  clas_editado?: string;
 }
 
 export const coffeeLotSchema = z.object({
@@ -56,3 +58,9 @@ export const coffeeLotSchema = z.object({
 
 // Export types from schema
 export type zCoffeeLotSchema = z.infer<typeof coffeeLotSchema>;
+
+export interface User {
+  userlogon: Object,
+	displayName: string,
+	usuario: string
+}

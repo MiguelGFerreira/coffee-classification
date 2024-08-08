@@ -1,11 +1,12 @@
 "use client"
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { CoffeeLot, zCoffeeLotSchema, coffeeLotSchema } from "@/types";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { patchLote, postLote } from "@/api";
+import { UserContext } from "@/context/UserContext";
 
 interface LotDetailProps {
   lot: CoffeeLot;
@@ -17,6 +18,8 @@ const LotDetail = ({ lot }: LotDetailProps) => {
 
   const [resultado, setResultado] = useState(lot.clas_resultado || "");
   const [pagamento, setPagamento] = useState(lot.clas_pagamento || "");
+
+  const user = useContext(UserContext);
 
   const defaultValues = {
     defeitos: lot.clas_defeitoS || 0,
@@ -65,21 +68,23 @@ const LotDetail = ({ lot }: LotDetailProps) => {
       clas_pagamento: pagamento,
     }
 
-    console.log(updatedData);
+    console.log(user);
 
     try {
       if (lot.status === "Classificado") {
         console.log("patch");
-        await patchLote(updatedData, lot.clas_id);
+        await patchLote(updatedData, lot.clas_id, user!.displayName);
       } else {
         console.log("post");
-        await postLote(updatedData, lot.idlote, lot.numLote);
+        await postLote(updatedData, lot.idlote, lot.numLote, user!.displayName);
       }
       location.reload();
     } catch (error) {
       console.error("Error updating lot:", error);
     }
   };
+
+  console.log(user);
 
   return (
     <div className="container mx-auto p-4">
@@ -124,6 +129,7 @@ const LotDetail = ({ lot }: LotDetailProps) => {
               <option value="Não">Não</option>
               <option value="A disposição">A disposição</option>
             </select>
+            <p><strong>Classificado por:</strong> {lot.clas_usuario}</p>
           </div>
           <div className="space-y-4">
             {[

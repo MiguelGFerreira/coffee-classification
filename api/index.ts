@@ -20,7 +20,7 @@ export async function getLoteById(idlote: string) {
 	return res.json()
 }
 
-export const postLote = async (data: zCoffeeLotSchema, idlote: number, numLote: string) => {
+export const postLote = async (data: zCoffeeLotSchema, idlote: number, numLote: string, usuario: string) => {
 	const myHeaders = new Headers();
 	myHeaders.append("Content-Type", "application/json");
 
@@ -44,6 +44,7 @@ export const postLote = async (data: zCoffeeLotSchema, idlote: number, numLote: 
 		"cata": data.cata,
 		"resultado": data.clas_resultado,
 		"pagamento": data.clas_pagamento,
+		"usuario": usuario,
 	});
 
 	console.log("post: ", raw);
@@ -61,7 +62,7 @@ export const postLote = async (data: zCoffeeLotSchema, idlote: number, numLote: 
 		.catch(error => console.log('error', error));
 }
 
-export async function patchLote(data: zCoffeeLotSchema, clas_id: number | undefined) {
+export async function patchLote(data: zCoffeeLotSchema, clas_id: number | undefined, editado: string) {
 	const url = `http://${ip}:8000/express-coffee/lotes/${clas_id}`;
 	const myHeaders = new Headers();
 
@@ -87,6 +88,7 @@ export async function patchLote(data: zCoffeeLotSchema, clas_id: number | undefi
 		"cata": data.cata,
 		"resultado": data.clas_resultado,
 		"pagamento": data.clas_pagamento,
+		"editado": editado,
 	});
 
 	console.log("patch: ", raw);
