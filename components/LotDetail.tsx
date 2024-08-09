@@ -17,7 +17,7 @@ const LotDetail = ({ lot }: LotDetailProps) => {
   const user = useContext(UserContext);
   const acesso = user?.acesso[0].ACESSO;
 
-  const [isEditable, setIsEditable] = useState(lot.status !== "Classificado" && acesso !== "A");
+  const [isEditable, setIsEditable] = useState(lot.status !== "Classificado");
 
   const [resultado, setResultado] = useState(lot.clas_resultado || "");
   const [pagamento, setPagamento] = useState(lot.clas_pagamento || "");
@@ -89,8 +89,8 @@ const LotDetail = ({ lot }: LotDetailProps) => {
       <button onClick={() => router.back()} className="text-primary-green mb-4">
         &larr; Voltar
       </button>
-      <form id="classification" onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-md rounded-lg p-4">
-        <div className="grid grid-cols-2 gap-4">
+      <form id="classification" onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-md rounded-lg p-4 space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2">
             <h2 className="font-bold text-coffee-brown mb-4">Detalhes do Lote</h2>
             <p><strong>Data:</strong> {lot.data_entrada}</p>
@@ -174,18 +174,18 @@ const LotDetail = ({ lot }: LotDetailProps) => {
             <button
               type="submit"
               onClick={handleSubmit(onSubmit)}
-              className="bg-secondary-green text-white px-4 py-2 rounded-md"
+              className="bg-secondary-green text-white px-4 py-2 rounded-md w-full sm:w-auto"
             >
               Salvar
             </button>
           </div>
         )}
       </form>
-      {!isEditable && (
+      {acesso === "A" && !isEditable && (
         <button
           type="button"
           onClick={handleEditClick}
-          className="bg-secondary-green text-white px-4 py-2 rounded-md mt-4"
+          className="bg-secondary-green text-white px-4 py-2 rounded-md w-full sm:w-auto"
         >
           Editar
         </button>

@@ -4,8 +4,25 @@ import { zCoffeeLotSchema } from "@/types";
 
 const ip = "10.10.200.142";
 
-export async function getLotes() {
-	const res = await fetch(`http://${ip}:8000/express-coffee/lotes`)
+export async function getLotes(filters: { lotNumber?: string, isClassified?: string, date?: string, seller?: string }) {
+	const query = new URLSearchParams();
+
+	if (filters.lotNumber) {
+		query.append('lotNumber', filters.lotNumber)
+	}
+	if (filters.isClassified) {
+		query.append('isClassified', filters.isClassified)
+	}
+	if (filters.date) {
+		query.append('date', filters.date)
+	}
+	if (filters.seller) {
+		query.append('seller', filters.seller)
+	}
+
+	console.log(`http://${ip}:8000/express-coffee/lotes?${query.toString()}`);
+	const res = await fetch(`http://${ip}:8000/express-coffee/lotes?${query.toString()}`)
+
 	if (!res.ok) {
 		throw new Error('Falha ao buscar dados');
 	}
