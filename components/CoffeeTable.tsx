@@ -2,13 +2,11 @@
 
 import { getLotes } from "@/api";
 import { CoffeeLot } from "@/types";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 import Link from "next/link";
 
 const CoffeeTable = () => {
-  const router = useRouter();
   const [coffeeLots, setCoffeeLots] = useState<CoffeeLot[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState({

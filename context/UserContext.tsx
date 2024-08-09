@@ -6,11 +6,11 @@ import React, { useEffect, useState } from "react";
 
 export const UserContext = React.createContext<User | null>(null)
 
-const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 	const [user, setUser] = useState<User | null>(null);
 
 	const fetchUser = async () => {
-		const user: User = await getUserLogon()
+		const user = await getUserLogon()
 		setUser(user);
 	}
 
@@ -20,5 +20,3 @@ const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 
 	return <UserContext.Provider value={user}>{children}</UserContext.Provider>
 }
-
-export default UserProvider;

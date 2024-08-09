@@ -64,7 +64,7 @@ interface Acesso {
 }
 
 export interface User {
-  userlogon: Object,
+  userlogon: string | null,
 	usuario: string,
   username: string,
   acesso: Acesso[],

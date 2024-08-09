@@ -1,4 +1,6 @@
 import CoffeeTable from "@/components/CoffeeTable";
+import { UserContext } from "@/context/UserContext";
+import { useContext } from "react";
 
 export default function Home() {
   return (

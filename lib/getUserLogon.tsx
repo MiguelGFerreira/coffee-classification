@@ -24,7 +24,7 @@ export async function getUserLogon() {
 		}
 	});
 
-	const namePart = userlogon.replace('realcafe\\', '');
+	const namePart = userlogon!.replace('realcafe\\', '');
 	const nameParts = namePart.split('.');
 	const username = nameParts.map(part =>
 		part.charAt(0).toUpperCase() + part.slice(1)

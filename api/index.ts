@@ -2,7 +2,7 @@
 
 import { zCoffeeLotSchema } from "@/types";
 
-const ip = "10.10.200.142";
+const apiRoute = "10.0.73.216:83/classificacao/express-coffee";
 
 export async function getLotes(filters: { lotNumber?: string, isClassified?: string, date?: string, seller?: string }) {
 	const query = new URLSearchParams();
@@ -20,8 +20,8 @@ export async function getLotes(filters: { lotNumber?: string, isClassified?: str
 		query.append('seller', filters.seller)
 	}
 
-	console.log(`http://${ip}:8000/express-coffee/lotes?${query.toString()}`);
-	const res = await fetch(`http://${ip}:8000/express-coffee/lotes?${query.toString()}`)
+	console.log(`http://${apiRoute}/lotes?${query.toString()}`);
+	const res = await fetch(`http://${apiRoute}/lotes?${query.toString()}`)
 
 	if (!res.ok) {
 		throw new Error('Falha ao buscar dados');
@@ -30,7 +30,7 @@ export async function getLotes(filters: { lotNumber?: string, isClassified?: str
 }
 
 export async function getLoteById(idlote: string) {
-	const res = await fetch(`http://${ip}:8000/express-coffee/lotes/${idlote}`)
+	const res = await fetch(`http://${apiRoute}/lotes/${idlote}`)
 	if (!res.ok) {
 		throw new Error('Falha ao buscar dados');
 	}
@@ -67,7 +67,7 @@ export const postLote = async (data: zCoffeeLotSchema, idlote: number, numLote: 
 	console.log("post: ", raw);
 
 	fetch(
-		`http://${ip}:8000/express-coffee/lotes/${idlote}`,
+		`http://${apiRoute}/lotes/${idlote}`,
 		{
 			method: 'POST',
 			headers: myHeaders,
@@ -80,7 +80,7 @@ export const postLote = async (data: zCoffeeLotSchema, idlote: number, numLote: 
 }
 
 export async function patchLote(data: zCoffeeLotSchema, clas_id: number | undefined, editado: string) {
-	const url = `http://${ip}:8000/express-coffee/lotes/${clas_id}`;
+	const url = `http://${apiRoute}/lotes/${clas_id}`;
 	const myHeaders = new Headers();
 
 	myHeaders.append('Content-Type', 'application/json');
